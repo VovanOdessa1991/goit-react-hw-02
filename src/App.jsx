@@ -1,13 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import Options from "./components/Options/Options";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [feedback, setFeedback] = useState({
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  });
+
+  goodClick, neutral, badClick;
+
+  const goodClick = () => {
+    setFeedback({
+      ...feedback,
+      good: feedback.good + 1,
+    });
+  };
+  const neutral = () => {
+    setFeedback({
+      ...feedback,
+      neutral: feedback.neutral + 1,
+    });
+  };
+  const badClick = () => {
+    setFeedback({
+      ...feedback,
+      bad: feedback.bad + 1,
+    });
+  };
 
   return (
     <>
+      <Options />
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -29,7 +57,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
