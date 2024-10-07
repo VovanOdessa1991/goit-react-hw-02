@@ -25,7 +25,12 @@ function App() {
 
   return (
     <>
-      {feedback < 0 ? <Feedbeck feedback={feedback} /> : "ogkdgj"}
+      {/* Good */}
+      {feedback.good + feedback.neutral + feedback.bad > 0 ? (
+        <Feedbeck feedback={feedback} />
+      ) : (
+        "ogkdgj"
+      )}
       <Options updateFeedback={updateFeedback} />
       <Description />
 
