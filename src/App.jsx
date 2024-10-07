@@ -3,6 +3,8 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import Options from "./components/Options/Options";
+import Description from "./components/Description/Description";
+import Feedbeck from "./components/Feedbeck/Feedbeck";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -12,30 +14,21 @@ function App() {
     bad: 0,
   });
 
-  goodClick, neutral, badClick;
+  // goodClick, neutral, badClick;
 
-  const goodClick = () => {
+  const updateFeedback = (name) => {
     setFeedback({
       ...feedback,
-      good: feedback.good + 1,
-    });
-  };
-  const neutral = () => {
-    setFeedback({
-      ...feedback,
-      neutral: feedback.neutral + 1,
-    });
-  };
-  const badClick = () => {
-    setFeedback({
-      ...feedback,
-      bad: feedback.bad + 1,
+      [name]: feedback[name] + 1,
     });
   };
 
   return (
     <>
-      <Options />
+      {feedback < 0 ? <Feedbeck feedback={feedback} /> : "ogkdgj"}
+      <Options updateFeedback={updateFeedback} />
+      <Description />
+
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -56,6 +49,7 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <div>rkfjjfr</div>
     </>
   );
 }

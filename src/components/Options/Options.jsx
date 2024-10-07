@@ -1,11 +1,11 @@
 import React from "react";
 
-const Options = (goodClick, neutral, badClick) => {
+const Options = ({ updateFeedback }) => {
   return (
     <div>
-      <button goodClick={goodClick}>Good</button>
-      <button neutral={neutral}>Neutral</button>
-      <button badClick={badClick}>Bad</button>
+      <button onClick={() => updateFeedback("good")}>Good</button>
+      <button onClick={() => updateFeedback("neutral")}>Neutral</button>
+      <button onClick={() => updateFeedback("bad")}>Bad</button>
     </div>
   );
 };
