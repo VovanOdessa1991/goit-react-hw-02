@@ -1,20 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import Options from "./components/Options/Options";
 import Description from "./components/Description/Description";
 import Feedbeck from "./components/Feedbeck/Feedbeck";
+import Notification from "./components/Notification/Notification";
 
 function App() {
   const [count, setCount] = useState(0);
-  const [feedback, setFeedback] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
+  const [feedback, setFeedback] = useState(() => {
+    const parsedFeedback = JSON.parse(localStorage.getItem("feedback")) ?? {
+      good: 0,
+      neutral: 0,
+      bad: 0,
+    };
+    return parsedFeedback;
   });
-
-  // goodClick, neutral, badClick;
+  useEffect(() => {
+    const stringifyedCategories = JSON.stringify(feedback);
+    localStorage.setItem("feedback", stringifyedCategories);
+  }, [feedback]);
 
   const updateFeedback = (name) => {
     setFeedback({
@@ -22,17 +28,31 @@ function App() {
       [name]: feedback[name] + 1,
     });
   };
+  const resetFeetdback = () => {
+    setFeedback({
+      good: 0,
+      neutral: 0,
+      bad: 0,
+    });
+  };
+  const total = feedback.good + feedback.neutral + feedback.bad;
+  const positive = Math.round((feedback.good / total) * 100);
 
   return (
     <>
-      {/* Good */}
-      {feedback.good + feedback.neutral + feedback.bad > 0 ? (
-        <Feedbeck feedback={feedback} />
-      ) : (
-        "ogkdgj"
-      )}
-      <Options updateFeedback={updateFeedback} />
       <Description />
+      <Options
+        updateFeedback={updateFeedback}
+        resetFeetdback={resetFeetdback}
+        total={total}
+      />
+      {/* <Feedbeck feedback={feedback} /> */}
+      {/* Good */}
+      {total > 0 ? (
+        <Feedbeck feedback={feedback} total={total} positive={positive} />
+      ) : (
+        <Notification />
+      )}
 
       <div>
         <a href="https://vitejs.dev" target="_blank">

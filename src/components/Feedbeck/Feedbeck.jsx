@@ -1,24 +1,28 @@
 import React from "react";
 
-const Feedbeck = ({ feedback }) => {
+const Feedbeck = ({ feedback, total, positive }) => {
   // let feedbackBool = feedback.good + feedback.neutral + feedback.bad > 0;
   return (
     // Bad warum?
 
-    // feedbackBool? ('<ul> <li>Good: {feedback.good}</li>
-    //   <li>Neutral: {feedback.neutral}</li>
-    //   <li>Bad: {feedback.bad}</li>
-    //   <li>Total: </li>
-    //   <li>Positive:</li>
-    // </ul>') : (
-    //     "ogkdgj"
-    //   );
+    // feedbackBool ? (
+    //   <ul>
+    //     {" "}
+    //     <li>Good: {feedback.good}</li>
+    //     <li>Neutral: {feedback.neutral}</li>
+    //     <li>Bad: {feedback.bad}</li>
+    //     <li>Total: </li>
+    //     <li>Positive:</li>
+    //   </ul>
+    // ) : (
+    //   "ogkdgj"
+    // )
     <ul>
       <li>Good: {feedback.good}</li>
       <li>Neutral: {feedback.neutral}</li>
       <li>Bad: {feedback.bad}</li>
-      <li>Total: </li>
-      <li>Positive:</li>
+      <li>Total: {total}</li>
+      <li>Positive: {positive} %</li>
     </ul>
   );
 };
