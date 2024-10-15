@@ -1,14 +1,11 @@
 import { useState, useEffect } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import Options from "./components/Options/Options";
 import Description from "./components/Description/Description";
-import Feedbeck from "./components/Feedbeck/Feedbeck";
+import Feedback from "./components/Feedback/Feedback";
 import Notification from "./components/Notification/Notification";
 
 function App() {
-  const [count, setCount] = useState(0);
   const [feedback, setFeedback] = useState(() => {
     const parsedFeedback = JSON.parse(localStorage.getItem("feedback")) ?? {
       good: 0,
@@ -28,7 +25,7 @@ function App() {
       [name]: feedback[name] + 1,
     });
   };
-  const resetFeetdback = () => {
+  const resetFeedback = () => {
     setFeedback({
       good: 0,
       neutral: 0,
@@ -43,38 +40,16 @@ function App() {
       <Description />
       <Options
         updateFeedback={updateFeedback}
-        resetFeetdback={resetFeetdback}
+        resetFeedback={resetFeedback}
         total={total}
       />
       {/* <Feedbeck feedback={feedback} /> */}
       {/* Good */}
       {total > 0 ? (
-        <Feedbeck feedback={feedback} total={total} positive={positive} />
+        <Feedback feedback={feedback} total={total} positive={positive} />
       ) : (
         <Notification />
       )}
-
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <div>rkfjjfr</div>
     </>
   );
 }
